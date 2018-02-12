@@ -2,6 +2,7 @@ package css.cis3334.pizzaorder;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
@@ -59,9 +60,19 @@ public class MainActivity extends AppCompatActivity implements updateViewInterfa
 
     public void onClickOrder(View view) {
         // ****** Students need to add code here to get information from the UI widgets...
-
+        String size;
+        if(rbSmall.isChecked()) {
+            size = "small";
+        }
+        else if(rbMedium.isChecked()) {
+            size = "medium";
+        }
+        else {
+            size = "large";
+        }
+        pizzaOrderSystem.setDelivery(chkbxDelivery.isChecked());
         // ****** Students need to modify the call to OrderPizza to order the type of pizza the user selects using the UI widgets
-        String orderDescription = pizzaOrderSystem.OrderPizza("Peperoni", "large", false  );
+        String orderDescription = pizzaOrderSystem.OrderPizza(spinnerToppings.getSelectedItem().toString(), size, chkbxCheese.isChecked());
 
 
         //display a pop up message for a long period of time
